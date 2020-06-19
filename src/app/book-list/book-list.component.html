@@ -1,0 +1,14 @@
+<div class="row mt-2">
+<div class="col-md-8 offset-md-2">
+<p *ngIf="books.length ===0 && !loading" class="text-center">Pas de livres</p>
+<div class="booklist" *ngIf="!loading">
+    <ul class="list-group">
+      <app-book-single *ngFor="let book of books" [book]="book"></app-book-single>
+    </ul>
+    <app-my-loader *ngIf="loadMoreLoading"></app-my-loader>
+    <button class="btn btn-outline-secondary btn-center"  (click)="loadMore()" *ngIf="!loadFull && paginationConfig.total_page !== 0">Load more</button>
+</div>
+<app-my-loader *ngIf="loading"></app-my-loader>
+
+</div>
+</div>

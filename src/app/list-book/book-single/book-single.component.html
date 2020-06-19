@@ -1,0 +1,9 @@
+<li class="list-group-item">
+    <button class="btn btn-outline-danger float-right" type="button" [disabled]="supLoading" (click)="removeBook(book.id)">
+        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" *ngIf="supLoading"></span>
+        supprimer
+      </button>
+      <img [src]="directory+book.image"style="width:100px;height:100px;"/><br>
+    <a routerLink="/book/{{book.id}}">{{ book.titre }}</a><br>
+    <span>Auteur : {{ book.auteur }}</span>
+</li>

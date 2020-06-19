@@ -1,0 +1,33 @@
+<div class="row justify-content-center">
+
+    <div class="col-md-5 mt-5">
+     <h2 class="text-center">Signup here</h2>
+     <div class="alert alert-success" *ngIf="success">
+       {{ success }}
+     </div>
+   <div class="authForm">
+    <form #f="ngForm" (ngSubmit)="signup(f)">
+    <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" class="form-control" name="text" [(ngModel)]="form.name">
+        <span class="text-danger">{{  errors.name }}</span>
+    </div>
+     <div class="form-group">
+       <label for="email">Email</label>
+       <input type="email" class="form-control" name="email" [(ngModel)]="form.email">
+       <span class="text-danger">{{  errors.email }}</span>
+     </div>
+     <div class="form-group">
+         <label for="password">Password</label>
+         <input type="password" class="form-control" name="password" [(ngModel)]="form.password">
+         <span class="text-danger">{{  errors.password }}</span>
+     </div>
+     <div class="form-group">
+        <label for="password_confirmation">Confirm Password</label>
+        <input type="password" class="form-control" name="password_confirmation" [(ngModel)]="form.password_confirmation">
+    </div>
+     <button type="submit" class="btn btn-success btn-block mb-2 mr-3">Sign up</button>
+    </form>
+   </div>
+    </div> 
+ </div>

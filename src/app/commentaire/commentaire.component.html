@@ -1,0 +1,69 @@
+
+<div  class="row mt-2 mb-2">
+    <div class="col-md-1 mr-3">
+     <i class="fas fa-user" style="font-size:45px;"></i>
+     
+    </div>
+    <div class="col-md-6 ml-3 mb-3 comment_content">
+     <span style="color:blue;">{{ comment.user_name }}</span>. {{ comment.created_at | date:'d MMMM y h:mm a' }}
+     <p>{{ comment.contenu}}</p>
+    <div>
+        <a href="#" (click)="likeComment($event)"><i class="fa fa-thumbs-up mr-1" aria-hidden="true" style="font-size:20px;" [ngStyle]="{color:color_like}"></i></a>
+        <span class="mr-3">{{ comment.liked_by.length > 0 ? comment.liked_by.length :null }}</span>
+        <a href="#" (click)="dislikeComment($event)" ><i class="fas fa-thumbs-down mr-1" aria-hidden="true" style="font-size:20px;" [ngStyle]="{color:color_dislike}"></i></a>
+        <span class="mr-3">{{ comment.disliked_by.length > 0 ? comment.disliked_by.length :null}}</span>
+        <a href="#" (click)="formForAnswer($event)">REPONDRE</a>
+    </div> 
+     
+     
+     <div class="repondre mt-3" *ngIf="repondre">
+     <form>
+         <div class="form-group" *ngIf="loggedIn">
+             <textarea class="form-control" [(ngModel)]="contenu" name="contenu">repondre</textarea>
+             <button class="btn btn-dark" (click)="addAnswer($event)">Envoyer</button>
+         </div>
+     </form>
+    </div>
+    <a href="#" (click)="reponse($event)">{{ repondreLabel }}</a>
+
+    <div *ngIf="afficheReponse" class="mt-3">
+        <div  *ngFor="let comment_answer of otherAnswers ">
+            <div class="row" *ngIf="comment.answers.length > 0">
+            <div class="col-md-1">
+                <i class="fas fa-user" style="font-size:30px;"></i>
+                
+            </div>
+            <div class="col-md-8 ml-2">
+            <span style="color:blue;">{{ comment_answer.user_name }}</span>. {{ comment_answer.created_at | date:'d MMMM y h:mm a' }}
+            <p>{{ comment_answer.contenu }}</p>
+           <div>
+               <a href="#" (click)="likeAnswer($event,comment_answer.id)"><i class="fa fa-thumbs-up mr-1" aria-hidden="true" style="font-size:20px;" [ngStyle]="{color:comment_answer.like_color}"></i></a>
+               <span class="mr-3">{{ comment_answer.liked_by.length > 0 ? comment_answer.liked_by.length : null}}</span>
+               <a href="#" (click)="dislikeAnswer($event,comment_answer.id)"><i class="fas fa-thumbs-down mr-1" aria-hidden="true" style="font-size:20px;" [ngStyle]="{color:comment_answer.dislike_color}"></i></a>
+               <span>{{ comment_answer.disliked_by.length > 0 ? comment_answer.disliked_by.length : null}}</span>
+           </div> 
+           </div>
+           </div>
+        </div>
+    </div>
+    <div *ngFor="let answer of answerCurrentUser" class="mt-2">
+        <div class="row" *ngIf="answerCurrentUser.length > 0 && loggedIn">
+            <div class="col-md-1">
+                <i class="fas fa-user" style="font-size:30px;"></i>
+                
+            </div>
+            <div class="col-md-8 ml-2">
+            <span style="color:blue;">{{ answer.user_name }}</span>. {{ answer.created_at | date:'d MMMM y h:mm a' }}
+            <p>{{ answer.contenu }}</p>
+           <div>
+               <a href="#" (click)="likeAnswer($event,answer.id)"><i class="fa fa-thumbs-up mr-1" aria-hidden="true" style="font-size:20px;" [ngStyle]="{color:answer.like_color}"></i></a>
+               <span class="mr-3">{{ answer.liked_by.length > 0 ? answer.liked_by.length : null}}</span>
+               <a href="#" (click)="dislikeAnswer($event,answer.id)"><i class="fas fa-thumbs-down mr-1" aria-hidden="true" style="font-size:20px;" [ngStyle]="{color:answer.dislike_color}"></i></a>
+               <span>{{ answer.disliked_by.length > 0 ? answer.disliked_by.length : null}}</span>
+           </div> 
+           </div>
+           </div>
+    </div>
+
+</div>
+</div>

@@ -1,0 +1,32 @@
+<div class="row mt-2">
+    <div class="col-md-8 offset-md-2">
+        <h3 class="text-center">Ajouter un livre</h3>
+    </div>
+</div>
+<div class="row mt-1">
+ <div class="col-md-8 offset-md-2">
+    <form (submit)="addBook(f)" #f="ngForm">
+        <div class="form-group">
+            <label for="titre">Titre</label>
+            <input type="text" placeholder="titre" class="form-control" name="titre" #t="ngModel" [(ngModel)]="titre" required [ngClass]="{'is-invalid':t.invalid && isSubmitted}">
+            <span class="text-danger" *ngIf="t.invalid && isSubmitted">Ce champs est requis.</span>
+        </div>
+        <div class="form-group">
+            <label for="auteur">Auteur</label>
+            <input type="text" placeholder="auteur" class="form-control" name="auteur" #a="ngModel" [(ngModel)]="auteur" required [ngClass]="{'is-invalid':a.invalid && isSubmitted}">
+            <span class="text-danger" *ngIf="a.invalid && isSubmitted">Ce champs est requis.</span>
+        </div>        
+        <div class="form-group">
+            <label for="description">Description</label>
+            <textarea name="description" class="form-control" #te="ngModel" [(ngModel)]="description"[ngClass]="{'is-invalid':te.invalid && isSubmitted}" required>Description</textarea>
+            <span class="text-danger" *ngIf="te.invalid && isSubmitted">Ce champs est requis.</span>
+        </div>
+
+        <div class="form-group">
+            <label for="auteur">Photo</label>
+            <input type="file" class="form-control" name="auteur" id="file" (change)="assignImage($event)" required>
+        </div>
+        <button type="submit" class="btn btn-success btn-block" [disabled]="isSubmitted">ajouter</button>
+    </form>
+ </div>
+</div>
